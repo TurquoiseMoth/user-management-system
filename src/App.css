@@ -1,18 +1,18 @@
-.app-shell {
+.wrapper {
   min-height: 100vh;
   padding: 24px;
   background: #f3f6fb;
 }
 
 :root {
-  --primary: #0b3d91; /* formal deep blue */
-  --charcoal: #374151; /* dark gray */
-  --muted: #6b7280; /* muted gray */
-  --danger: #b91c1c; /* red for destructive actions */
+  --primary: #0b3d91;
+  --charcoal: #374151;
+  --muted: #6b7280;
+  --danger: #b91c1c;
   --card-bg: #ffffff;
 }
 
-.app-header {
+.header {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -22,30 +22,7 @@
   margin-bottom: 24px;
 }
 
-.app-nav {
-  display: flex;
-  gap: 12px;
-}
-
-.app-nav a {
-  display: inline-block;
-  padding: 8px 14px;
-  text-decoration: none;
-  font-weight: 600;
-  color: white;
-  background: var(--charcoal);
-  border-radius: 8px;
-  transition:
-    background 150ms ease,
-    transform 120ms ease;
-}
-
-.app-nav a:hover {
-  background: #283141;
-  transform: translateY(-1px);
-}
-
-.app-main {
+.main {
   max-width: 960px;
   margin: 0 auto;
   background: var(--card-bg);
@@ -53,12 +30,55 @@
   border-radius: 12px;
 }
 
-.user-list {
+.main section {
+  margin: 0;
+  padding: 0;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.title {
+  margin: 0 0 24px;
+  text-align: left;
+  font-size: 2.2rem;
+  line-height: 1.1;
+}
+
+.main h2 {
+  margin: 0;
+  text-align: left;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 680px) {
+  .top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .actions {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.cards {
   display: grid;
   gap: 16px;
 }
 
-.user-card {
+.card {
   border: 1px solid #e6e9ef;
   border-radius: 10px;
   padding: 16px;
@@ -69,17 +89,21 @@
   background: var(--card-bg);
 }
 
-.user-card__content {
+.card-content {
   min-width: 240px;
 }
 
-.user-card__actions {
+.card-buttons {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.button {
+.card-buttons .btn {
+  text-transform: uppercase;
+}
+
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -91,91 +115,161 @@
   cursor: pointer;
   text-decoration: none;
   min-width: 120px;
-  font-size: 15px;
-  line-height: 1;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
   box-shadow: 0 6px 14px rgba(11, 61, 145, 0.08);
   transition:
     transform 120ms ease,
     box-shadow 120ms ease;
 }
 
-.button:hover {
+.btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(11, 61, 145, 0.12);
 }
 
-.button--small {
+.small-btn {
   padding: 8px 12px;
   font-size: 13px;
   min-width: 96px;
 }
 
-.button--secondary {
+.secondary-btn {
   background: var(--charcoal);
 }
 
-.button--danger {
+.secondary-btn.outline,
+.outline.secondary-btn {
+  background: transparent;
+  color: var(--charcoal);
+  border: 2px solid var(--charcoal);
+  box-shadow: none;
+}
+
+.secondary-btn.outline:hover,
+.outline.secondary-btn:hover {
+  background: rgba(55, 65, 81, 0.08);
+  color: var(--charcoal);
+}
+
+.danger-btn {
   background: var(--danger);
 }
 
-.button--primary {
+.primary-btn {
   max-width: 240px;
   background: var(--primary);
 }
 
-/* Ensure buttons do not stretch inside flex containers and look buttony */
-.user-card__actions .button,
-.page-actions .button,
-.app-nav a {
-  width: auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Small responsive tweak for header title on narrow screens */
-.app-header h1 {
+.header h1 {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
   font-weight: 700;
+  font-size: 2.8rem;
+}
+
+@media (max-width: 760px) {
+  .wrapper {
+    padding: 16px;
+  }
+
+  .main {
+    padding: 18px;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card-content {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .card-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card-buttons .btn {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .small-btn {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .actions {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 @media (max-width: 520px) {
-  .app-header h1 {
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .header h1 {
     position: static;
     transform: none;
     text-align: center;
     width: 100%;
     margin-bottom: 8px;
+    font-size: 2rem;
   }
-  .app-nav {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
+
+  .main {
+    padding: 16px;
+  }
+
+  .btn {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  .small-btn {
+    padding: 10px 12px;
+    font-size: 14px;
   }
 }
 
 /* Ensure buttons do not stretch inside flex containers */
-.user-card__actions .button,
-.page-actions .button {
+.card-buttons .btn,
+.actions .btn {
   width: auto;
 }
 
-.user-form {
+.form {
   display: grid;
   gap: 16px;
 }
 
-.user-form label,
-.user-form fieldset {
+.form label,
+.form fieldset {
   display: grid;
   gap: 8px;
 }
 
-.user-form input {
+.form input {
   width: 100%;
   padding: 10px;
   border: 1px solid #cbd5e1;
@@ -204,13 +298,6 @@ legend {
   border-color: #fca5a5;
 }
 
-.page-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 24px;
-}
-
 .details-section {
   margin-bottom: 24px;
   padding: 16px;
@@ -221,14 +308,6 @@ legend {
 .details-section h3 {
   margin-bottom: 12px;
   color: #1d4ed8;
-}
-
-/* Center the main title in the header */
-.app-header h1 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
 }
 
 .details-section p {

@@ -68,11 +68,11 @@ export default function UserDetailsPage() {
         </p>
       </div>
 
-      <div className="page-actions">
-        <Link to="/users" className="button">
+      <div className="actions">
+        <Link to="/users" className="btn">
           Back to Users
         </Link>
-        <Link to={`/edit-user/${user.id}`} className="button button--secondary">
+        <Link to={`/edit-user/${user.id}`} className="btn secondary-btn">
           Edit User
         </Link>
       </div>

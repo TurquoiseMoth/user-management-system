@@ -91,7 +91,7 @@ export default function UserForm({
   };
 
   return (
-    <form className="user-form" onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <label>
         Name
         <input
@@ -241,7 +241,7 @@ export default function UserForm({
         </fieldset>
       </fieldset>
 
-      <button type="submit" className="button button--primary">
+      <button type="submit" className="btn primary-btn">
         {submitLabel}
       </button>
     </form>

@@ -8,8 +8,8 @@ interface Props {
 
 export default function UserCard({ user, onDelete }: Props) {
   return (
-    <article className="user-card">
-      <div className="user-card__content">
+    <article className="card">
+      <div className="card-content">
         <h2>{user.name}</h2>
         <p>
           <strong>Username:</strong> @{user.username}
@@ -31,19 +31,19 @@ export default function UserCard({ user, onDelete }: Props) {
           {user.address.city} {user.address.zipcode}
         </p>
       </div>
-      <div className="user-card__actions">
-        <Link to={`/users/${user.id}`} className="button button--small">
+      <div className="card-buttons">
+        <Link to={`/users/${user.id}`} className="btn small-btn">
           Details
         </Link>
         <Link
           to={`/edit-user/${user.id}`}
-          className="button button--small button--secondary"
+          className="btn small-btn secondary-btn"
         >
           Edit
         </Link>
         <button
           type="button"
-          className="button button--danger button--small"
+          className="btn danger-btn small-btn"
           onClick={() => onDelete(user.id)}
         >
           Delete
