@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { FormEvent } from "react";
 import type { User } from "../types/user";
 
@@ -37,14 +37,8 @@ export default function UserForm({
   onSubmit,
 }: UserFormProps) {
   const [formData, setFormData] = useState<Omit<User, "id">>(
-    initialUser ?? emptyUser,
+    () => initialUser ?? emptyUser,
   );
-
-  useEffect(() => {
-    if (initialUser) {
-      setFormData(initialUser);
-    }
-  }, [initialUser]);
 
   const handleFieldChange = (field: keyof Omit<User, "id">, value: string) => {
     if (["name", "username", "email", "phone", "website"].includes(field)) {
