@@ -23,7 +23,7 @@ export const fetchUsers = createAsyncThunk<User[]>(
     }
 
     const data = await response.json();
-    return data.map((user: any) => ({
+    return data.map((user: User) => ({
       id: user.id,
       name: user.name,
       username: user.username ?? "",
